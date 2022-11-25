@@ -1,5 +1,4 @@
 from discord_webhook import DiscordWebhook, DiscordEmbed
-import os
 from dotenv import load_dotenv
 import os
 load_dotenv()

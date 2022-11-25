@@ -1,10 +1,9 @@
-import math
 import time
-
 import requests
-import json
-
 import discord
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
 
 class Miner:
@@ -34,7 +33,7 @@ while True:
 
     pings = request.json()['pings']
 
-    my_address = "0x18ed95e4039ebcfE720a870Ede6E02789BBa427b"
+    my_address = os.getenv("ADDRESS")
 
     obj = Scores(pings)
     obj.sort()
