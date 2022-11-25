@@ -1,8 +1,10 @@
 from discord_webhook import DiscordWebhook, DiscordEmbed
 import os
-import re
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
-webhookLink = "https://discord.com/api/webhooks/1045574498763669504/xxqx9wuT6SCF3cy6tUoAQdckzHjrkHi_C_Fy8xDOZrQ4GKEjFA5npZHzu6lGZNzhPQt7"
+webhookLink = os.getenv("WEBHOOK")
 webhook = DiscordWebhook(url=webhookLink)
 
 
