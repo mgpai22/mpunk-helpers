@@ -27,27 +27,32 @@ class Scores:
 
 
 while True:
+    try:
+        url = "https://mpunkspool.com/score.txt"
+        request = requests.get(url)
+        pings = request.json()['pings']
 
-    url = "https://mpunkspool.com/score.txt"
-    request = requests.get(url)
+        my_address = os.getenv("ADDRESS")
 
-    pings = request.json()['pings']
+        obj = Scores(pings)
+        obj.sort()
+        counter = 0
+        score = 0
+        for x in obj.arr:
+            counter += 1
+            if x.print()['address'] == my_address:
+                score = x.print()['score']
+                break
+                # print("score:", x.print()['score'])
+                # print("line position:", counter)
 
-    my_address = os.getenv("ADDRESS")
+        print("score:", score)
+        print("line position:", counter)
+        discord.discordCall(counter, round(score))
+        time.sleep(600)
+    except Exception as e:
+        time.sleep(600)
+        pass
 
-    obj = Scores(pings)
-    obj.sort()
-    counter = 0
-    score = 0
-    for x in obj.arr:
-        counter += 1
-        if x.print()['address'] == my_address:
-            score = x.print()['score']
-            break
-            # print("score:", x.print()['score'])
-            # print("line position:", counter)
 
-    print("score:", score)
-    print("line position:", counter)
-    discord.discordCall(counter, round(score))
-    time.sleep(60)
+
